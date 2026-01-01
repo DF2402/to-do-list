@@ -1,7 +1,7 @@
 import type { Knex } from "knex";
 import knex from "../db/knex.js";
 import { ToDoModel } from "../model/ToDoModel.js";
-import type { ToDoItem } from "../model/Types.js";
+import type { ToDoItem } from "../shared/Types.ts";
 
 export class ToDoService {
     private toDoModel: ToDoModel;

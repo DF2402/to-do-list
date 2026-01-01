@@ -1,12 +1,13 @@
 import type { Request, Response, NextFunction } from "express";
 import ToDoService from "../service/ToDoService.js";
-import type { ToDoItem } from "../model/Types.js";
+import type { ToDoItem } from "../shared/Types.ts";
 
 export class ToDoController {
 
     async createToDo(req: Request, res: Response, next: NextFunction) {
+        console.log("Creating to-do:", req.body);
         try {
-        const { title, description } = req.body;
+        const { title, description, completed, created_at, updated_at } = req.body;
             const toDo = await ToDoService.createToDo( { title, description, completed: false, created_at: new Date(), updated_at: new Date() } as ToDoItem );
             return res.status(201).json(toDo);
         } catch (error: any) {

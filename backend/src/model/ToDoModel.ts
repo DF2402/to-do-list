@@ -1,5 +1,5 @@
 import type { Knex } from "knex";
-import type { ToDoItem } from "./Types.js";
+import type { ToDoItem } from "../shared/Types.ts";
 
 export class ToDoModel {
     private knex: Knex;
@@ -8,6 +8,8 @@ export class ToDoModel {
     }
 
     async create(item: ToDoItem): Promise<ToDoItem> {
+        item.created_at = new Date();
+        item.updated_at = new Date();
         const [id] = await this.knex("to_do_items").insert(item);
         const created = await this.knex("to_do_items").where("id", id).first();
         return created!;

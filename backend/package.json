@@ -4,6 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "dev": "tsx src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "knex": "tsx node_modules/knex/bin/cli.js",
     "start": "tsx src/app.ts"
