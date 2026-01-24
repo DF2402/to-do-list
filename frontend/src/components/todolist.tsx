@@ -40,7 +40,7 @@ export default function ToDoList() {
   const [toDoItems, setToDoItems] = useState<ToDoItem[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/todo/all")
+    fetch("/api/todo/all")
       .then((response) => response.json())
       .then((data) => setToDoItems(data))
       .catch((error) => console.error("Error fetching to-dos:", error));
@@ -48,7 +48,7 @@ export default function ToDoList() {
   }, []);
 
   const deleteToDo = (id: number) => {
-    fetch(`http://localhost:3000/api/todo/${id}`, {
+    fetch(`/api/todo/${id}`, {
       method: "DELETE",
     });
     setToDoItems(toDoItems.filter((toDoItem) => toDoItem.id !== id));
@@ -56,7 +56,7 @@ export default function ToDoList() {
 
   const updateToDo = (toDo: ToDoItem) => {
     console.log("Updating to-do:", toDo);
-    fetch(`http://localhost:3000/api/todo/${toDo.id}`, {
+    fetch(`/api/todo/${toDo.id}`, {
       method: "PUT",
       body: JSON.stringify(toDo),
       headers: {
@@ -81,7 +81,7 @@ export default function ToDoList() {
       updated_at: updated_at,
     };
     console.log("To-do:", toDo);
-    fetch("http://localhost:3000/api/todo", {
+    fetch("/api/todo", {
       method: "POST",
       body: JSON.stringify(toDo),
       headers: {
